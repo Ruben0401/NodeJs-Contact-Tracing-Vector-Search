@@ -28,7 +28,7 @@ const upsertLocation = async (userId, location,contagiado,bigLocation) => {
 
 const findNearestUsers = async (vector, topK,id,bigLocation) => {
   const queryRequest = {
-    bigLocation,
+    vector:bigLocation,
     topK,
     includeValues: true,
     includeMetadata: true,
