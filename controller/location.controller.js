@@ -1,8 +1,7 @@
 const { updateLocation } = require('../service/location.service');
 
 const updateUserLocation = async (req, res) => {
-  const { userId } = req.params;
-  const { latitude, longitude } = req.body;
+  const { latitude, longitude,userId } = req.body;
 
   console.log(latitude, longitude, userId);
   if (
