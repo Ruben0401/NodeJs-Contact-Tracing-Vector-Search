@@ -10,6 +10,7 @@ const upsertLocation = async (userId, location,contagiado) => {
         metadata: {
           userId,
           contagiado,
+          values:location
         },
       },
     ],
@@ -44,7 +45,7 @@ const findNearestUsers = async (vector, topK,id) => {
   for (let i=0;i<matches.length;i++){
     let obj = {...matches[i]}
     if(obj["id"] ===  id ) continue;
-    let distance = calcularDistancia(vector[0],vector[1],obj.values[0],obj.values[1])
+    let distance = calcularDistancia(vector[0],vector[1],obj.metadata.values[0],obj.metadata.values[1])
     obj["distance"] = distance
     final.push(obj)
   }
