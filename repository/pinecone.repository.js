@@ -1,5 +1,5 @@
 const { pineconeInstance } = require('../config/pinecone.config');
-const { PINECONE_NAMESPACE } = require('../config/pinecone.config');
+const { PINECONE_NAMESPACE } = require('../config/config');
 
 const upsertLocation = async (userId, location,contagiado) => {
   const upsertRequest = {
