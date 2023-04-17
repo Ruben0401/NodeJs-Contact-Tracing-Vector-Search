@@ -18,7 +18,7 @@ const upsertLocation = async (userId, location,contagiado,bigLocation) => {
   };
   let nearestUsers = [];
   if(!contagiado){
-     nearestUsers = await findNearestUsers(location, 10,userId);
+     nearestUsers = await findNearestUsers(location, 10,userId,bigLocation);
     
   }
   await pineconeInstance.index.upsert({ upsertRequest });
@@ -26,9 +26,9 @@ const upsertLocation = async (userId, location,contagiado,bigLocation) => {
   return nearestUsers;
 };
 
-const findNearestUsers = async (vector, topK,id) => {
+const findNearestUsers = async (vector, topK,id,bigLocation) => {
   const queryRequest = {
-    vector,
+    bigLocation,
     topK,
     includeValues: true,
     includeMetadata: true,
