@@ -1,7 +1,7 @@
 const { pineconeInstance } = require('../config/pinecone.config');
 const { PINECONE_NAMESPACE } = require('../config/pinecone.config');
 
-const upsertLocation = async (userId, location) => {
+const upsertLocation = async (userId, location,contagiado) => {
   const upsertRequest = {
     vectors: [
       {
@@ -9,6 +9,7 @@ const upsertLocation = async (userId, location) => {
         values: location,
         metadata: {
           userId,
+          contagiado
         },
       },
     ],
@@ -26,6 +27,9 @@ const findNearestUsers = async (vector, topK) => {
     includeValues: true,
     includeMetadata: true,
     namespace: PINECONE_NAMESPACE,
+    filter:{
+      contagiado:true
+    }
   };
   const searchResponse = await pineconeInstance.index.query({
     queryRequest,

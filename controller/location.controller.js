@@ -1,7 +1,7 @@
 const { updateLocation } = require('../service/location.service');
 
 const updateUserLocation = async (req, res) => {
-  const { latitude, longitude,userId } = req.body;
+  const { latitude, longitude,userId,contagiado } = req.body;
 
   console.log(latitude, longitude, userId);
   if (
@@ -19,7 +19,7 @@ const updateUserLocation = async (req, res) => {
   }
 
   try {
-    const results = await updateLocation(userId, latitude, longitude);
+    const results = await updateLocation(userId, latitude, longitude,contagiado);
     res.status(200).send(results);
   } catch (error) {
     console.error(error);
