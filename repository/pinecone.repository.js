@@ -13,6 +13,7 @@ const upsertLocation = async (userId, location,contagiado) => {
         },
       },
     ],
+    namespace:PINECONE_NAMESPACE
   };
   const nearestUsers = await findNearestUsers(location, 10);
   await pineconeInstance.index.upsert({ upsertRequest });
