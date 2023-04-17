@@ -9,9 +9,13 @@ app.use(bodyParser.json());
 // Inicializa el índice
 pineconeInstance.initPinecone();
 
-app.put('/:userId', updateUserLocation);
+app.post('/:userId', updateUserLocation);
 app.get('/', (req,res)=>{
     res.status(200).end()
+});
+app.get('/:test', (req,res)=>{
+    const {test} = req.params
+    res.status(200).json({message:test})
 });
 
 module.exports = app;
