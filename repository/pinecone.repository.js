@@ -1,6 +1,7 @@
 const { pineconeInstance } = require('../config/pinecone.config');
 const { PINECONE_NAMESPACE } = require('../config/config');
 
+
 const upsertLocation = async (userId, location,contagiado,bigLocation) => {
   const upsertRequest = {
     vectors: [
@@ -48,7 +49,9 @@ const findNearestUsers = async (vector, topK,id,bigLocation) => {
     if(obj["id"] ===  id ) continue;
     let distance = calcularDistancia(vector[0],vector[1],obj.metadata.latitude,obj.metadata.longitude)
     obj["distance"] = distance
-    final.push(obj)
+    if(distance<=2){
+      final.push(obj)
+    }
   }
   return final;
 };
