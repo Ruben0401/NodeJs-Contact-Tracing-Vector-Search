@@ -49,7 +49,7 @@ const findNearestUsers = async (vector, topK,id,bigLocation) => {
     if(obj["id"] ===  id ) continue;
     let distance = calcularDistancia(vector[0],vector[1],obj.metadata.latitude,obj.metadata.longitude)
     obj["distance"] = distance
-    if(distance<=2){
+    if(distance<=50){
       final.push(obj)
     }
   }
