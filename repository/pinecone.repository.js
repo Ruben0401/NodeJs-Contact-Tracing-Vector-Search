@@ -53,7 +53,10 @@ const findNearestUsers = async (vector, topK,id,bigLocation) => {
       final.push(obj)
     }
   }
-  return final;
+  final.sort(function(a, b){
+    return a.distance - b.distance;
+  });
+  return final[0];
 };
 
 function calcularDistancia(lat1, lon1, lat2, lon2) {
